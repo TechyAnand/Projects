@@ -2,7 +2,6 @@
 #Problem Statement:
 #Color sense test 2: Find same color with top color bar:Find more colors in 60 seconds
 #Using Python and Selenium automating the above problem statement.
-#YoutubeChannel:TechyAnand
 
 
 
