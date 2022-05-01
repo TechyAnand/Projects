@@ -3,7 +3,7 @@
 import subprocess
 
 try:
-        Sub=subprocess.Popen(["psq -fu apache"],shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        Sub=subprocess.Popen(["ps -fu apache"],shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 
         #Sub=subprocess.Popen(["sleep 1000s"],shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 
