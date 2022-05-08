@@ -1,0 +1,87 @@
+input.csv
+------------
+JAN-17,1,2,15,115,A,P
+FEB-17,1,3,24,226,B,Q
+MAR-17,1,2,34,228,C,R
+APR-17,3,5,63,420,D,S
+MAY-17,1,3,29,208,E,T
+JUN-17,3,4,75,492,F,U
+JUL-17,2,3,67,436,G,V
+AUG-17,1,3,47,316,H,W
+SEP-17,1,5,37,277,I,X
+OCT-17,2,5,68,525,J,Y
+NOV-17,2,8,82,577,K,Z
+DEC-17,1,3,61,401,L,A
+JAN-18,2,3,64,620,M,B
+FEB-18,2,5,80,652,N,C
+MAR-18,2,7,70,495,O,D
+APR-18,2,7,74,514,P,E
+-----------------------
+
+#To print entire line
+awk '{print $0}' input.csv	        
+
+#To print first and sixth field with field separator “,” (comma).
+awk -F"," '{print $1,$6}' input.csv   	
+
+#To print number of fields in each line.
+awk -F"," '{print NF}' input.csv	  
+
+#To print number of record.
+awk -F"," '{print NR}' input.csv	  
+
+#To print last record of each line.
+awk -F"," '{print $NF}' input.csv 
+
+#To print the Third line
+awk -F"," 'NR==3{print $0}' input.csv	    
+
+#To print every third line from input file.
+awk -F"," 'NR%3==0{print $0,"linenumber–>" NR}' input.csv 	
+
+#To print lines in between 5th and 10th Lines
+awk -F"," 'NR>5 && NR <10{print $0,"linenumber–>" NR}' input.csv	  
+
+# To pattern match with word “Jan” and print the line from input file.
+awk -F"," '/Jan/{print $0}' input.csv	       
+
+#To pattern match with letter “A” in sixth field and print the line from input file.
+awk -F"," '$6~/A/{print $0}' input.csv	    
+
+#To pattern match with character “A” in first field and print the line from input file.
+awk -F"," '$1~/A/{print $0}' input.csv	         
+
+#To print the lines which are greater than 300 when compared with fifth field from input file
+awk -F"," '$5>300{print $0, “linenumber–>" NR}' input.csv	 
+
+#To pattern match the first field with “-17” and add the second field to print the sum.
+awk -F"," '$1~/-17/{c=$2+c} END{print c}' input.csv	 
+
+#To use progfile (set of awk commands) “aw_cmd” and print the required lines.
+aw_cmd
+------
+{if ($1~/JAN/ )print $0 ""linenumber"" NR;
+
+else
+
+print ""not matched"" ""linenumber"" NR}	
+-------
+awk -f aw_cmd input.csv
+
+# To count lines in files (emulates wc -l).
+awk 'END { print NR }' input.csv	  
+
+#To replace a character with a new word and print
+awk '{gsub(/a/,"PPPP"); print ;}' input.csv	      
+
+#To extract first two characters from first field.
+awk '{a=substr($1,1,2); print  a}' input.csv	
+
+#To convert each line into lower case
+awk '{ print tolower($0)}' input.csv	   
+
+#	Passing a variable and printing first field, passed variable and filename.
+awk -F"," -v val=30 '{ print $1 , val, FILENAME}' input.csv    
+
+#Using if conditional statement
+awk -F"," '{if ($1~/JAN/ ){print $1} else {print "NOT Matched"}}' input.csv	 
