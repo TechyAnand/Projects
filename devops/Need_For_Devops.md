@@ -736,6 +736,5 @@ It enables organizations to:
 - Increase collaboration
 - Improve customer satisfaction
 
-Modern software delivery at companies like Oracle, Google, Microsoft, Amazon, and Netflix heavily relies on DevOps principles and practices.
 
 Understanding the need for DevOps is the first step toward mastering CI/CD, Cloud Computing, Kubernetes, Infrastructure as Code, Site Reliability Engineering (SRE), and Platform Engineering.
