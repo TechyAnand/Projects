@@ -727,7 +727,7 @@ DevSecOps extends DevOps by embedding security into every stage of software deli
 
 Instead of treating security as a final checkpoint, DevSecOps makes security a shared responsibility across Development, Security, and Operations teams.
 
-Modern organizations such as Oracle, Google, Microsoft, Amazon, and Netflix increasingly adopt DevSecOps practices to deliver software that is:
+Modern organizations increasingly adopt DevSecOps practices to deliver software that is:
 
 - Fast
 - Reliable
