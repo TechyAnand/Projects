@@ -1,0 +1,46 @@
+services:
+  controller:
+    build:
+      context: .
+      target: controller
+    container_name: ansible-controller
+    hostname: controller
+    working_dir: /workspace
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./:/workspace
+    environment:
+      ANSIBLE_HOST_KEY_CHECKING: "False"
+      ANSIBLE_RETRY_FILES_ENABLED: "False"
+    depends_on:
+      - target1
+      - target2
+    networks:
+      - ansible-lab
+
+  target1:
+    build:
+      context: .
+      target: target
+    container_name: ansible-target1
+    hostname: target1
+    ports:
+      - "2222:22"
+    networks:
+      - ansible-lab
+
+  target2:
+    build:
+      context: .
+      target: target
+    container_name: ansible-target2
+    hostname: target2
+    ports:
+      - "2223:22"
+    networks:
+      - ansible-lab
+
+networks:
+  ansible-lab:
+    driver: bridge

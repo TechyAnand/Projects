@@ -1,0 +1,48 @@
+---
+- name: Ansible Playground Demo
+  hosts: targets
+  become: true
+
+  tasks:
+    - name: Verify connectivity
+      ping:
+
+    - name: Display hostname
+      command: hostname
+      register: hostname_output
+
+    - name: Print hostname
+      debug:
+        msg: "Current Host: {{ hostname_output.stdout }}"
+
+    - name: Create demo directory
+      file:
+        path: /tmp/ansible-demo
+        state: directory
+        mode: '0755'
+
+    - name: Create welcome file
+      copy:
+        dest: /tmp/ansible-demo/welcome.txt
+        content: |
+          ==================================
+          Welcome to Ansible Playground
+          Managed by Ansible
+          ==================================
+
+    - name: Gather operating system details
+      debug:
+        msg:
+          - "Hostname: {{ ansible_hostname }}"
+          - "OS Family: {{ ansible_os_family }}"
+          - "Distribution: {{ ansible_distribution }}"
+          - "Version: {{ ansible_distribution_version }}"
+
+    - name: Verify file creation
+      stat:
+        path: /tmp/ansible-demo/welcome.txt
+      register: file_status
+
+    - name: Print file status
+      debug:
+        var: file_status.stat.exists
