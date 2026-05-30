@@ -1,0 +1,6 @@
+project_name     = "terraform-local-lab"
+owner_name       = "devops-learner"
+environment      = "local"
+output_dir       = "lab-output"
+notes            = "Practice lab created locally without any cloud provider."
+random_id_length = 8
